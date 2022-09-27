@@ -1,0 +1,25 @@
+USED_CARS_TABLE
+
+id -- INT (es. 1) -- PRIMARY KEY -- NOTNULL -- AUTO_INCREMENT -- UNIQUE -- UNSIGNED
+brand -- VARCHAR(50) (es. FIAT) -- NOTNULL
+model -- VARCHAR(50) (es. Panda Young) -- NOTNULL
+model_specifications -- VARCHAR(100) (es. 1.6 16v 5p. Multispace GPL) -- NOTNULL
+description -- TEXT (es. Autoradio, Airbag passeggero, Servosterzo, Impianto a gas da revisionare bombola scaduta, Ammaccature su carrozzeria, Rumorosità avantreno) -- NULL
+power_kw -- SMALLINT (es. 80) -- NOTNULL
+transmission -- VARCHAR(30) (es. MANUALE, MANUALE/AUTOMATICA) -- NOTNULL
+gears -- TINYINT (es. 6) - NOTNULL
+empty_weight_kg -- SMALLINT (es 1300) -- NULL -- UNSIGNED
+price -- FLOAT(7,2) (es. 10000,99) -- NOTNULL -- UNSIGNED
+year -- YEAR (es. 2004) -- NOTNULL
+mileage_km -- MEDIUMINT (es. 300000) -- NOTNULL -- UNSIGNED
+power_supply -- VARCHAR(20) (es. BENZINA) -- NOTNULL
+traction -- VARCHAR(20) (es. ANTERIORE) -- NOTNULL
+owners -- TINYINT (es. 3) -- NOTNULL -- UNSIGNED
+warranty -- TINYINT(1) (1 oppure 0) -- NULL -- DEFAULT(0 -> false)
+warranty_duration_years -- TINYINT(1) (es. 2) -- NULL -- DEFAULT(0)
+license_plate -- VARCHAR(7) -- NOTNULL 
+emissions_class -- VARCHAR(10) (es. Euro 3) -- NOTNULL
+color -- VARCHAR(20) (es. Giallo) -- NOTNULL
+interior_color -- VARCHAR(20) (es. Verde) -- NULL
+loan_possibility -- TINYINT(1) (1 oppure 0) -- NULL -- DEFAULT(0 -> false)
+rating -- FLOAT(3,1) (es. 7.2) -- NULL
