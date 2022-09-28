@@ -2,6 +2,18 @@
 
 -- ****** BONUS **********************
 
+-- 9- Selezionare gli impiegati che non hanno mai cambiato compagnia aerea per cui lavorano (1061)
+SELECT COUNT(airline_employee.id) AS airlines_counter, airline_employee.employee_id AS employee_id
+FROM airline_employee
+GROUP BY airline_employee.employee_id
+HAVING COUNT(airline_employee.id) = 1;
+
+-- 8- Contare quante manutenzioni ha ricevuto ciascun aereo nel 2021 (dell'aereo vogliamo solo l'ID) (36)
+SELECT COUNT(maintenance_works.id) AS works_counter, maintenance_works.airplane_id AS airplane
+FROM maintenance_works
+WHERE YEAR(maintenance_works.datetime) = 2021
+GROUP BY maintenance_works.airplane_id;
+
 -- 7- Per ogni manufacturer, trovare l'aereo con maggior numero di posti a sedere (8)
 SELECT MAX(airplanes.seating_capacity) AS capacity, airplanes.manufacturer
 FROM airplanes
