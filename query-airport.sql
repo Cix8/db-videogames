@@ -1,5 +1,15 @@
 ﻿-- ++++++ QUERY CON GROUP BY ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+-- ****** BONUS **********************
+
+-- 7- Per ogni manufacturer, trovare l'aereo con maggior numero di posti a sedere (8)
+SELECT MAX(airplanes.seating_capacity) AS capacity, airplanes.manufacturer
+FROM airplanes
+GROUP BY airplanes.manufacturer
+ORDER BY capacity DESC;
+
+-- ****** BONUS **********************
+
 -- 6- Contare quanti voli ci sono stati ogni anno (tenendo conto della data di partenza) (11)
 SELECT COUNT(flights.id) AS flights_counter, YEAR(flights.departure_datetime) AS year
 FROM flights
