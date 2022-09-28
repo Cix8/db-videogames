@@ -1,4 +1,64 @@
-﻿-- ++++++ QUERY CON GROUP BY ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+﻿-- ++++++ QUERY CON JOIN ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+-- 6- Selezionare tutti gli id dei voli che hanno almeno un passeggero il cui cognome inizia con 'L' (966)
+SELECT DISTINCT flights.id
+FROM flights
+INNER JOIN flight_passenger
+ON flight_passenger.flight_id = flights.id
+INNER JOIN passengers
+ON passengers.id = flight_passenger.passenger_id
+WHERE EXISTS(SELECT * FROM passengers WHERE passengers.lastname LIKE 'L%');
+
+-- 5- Selezionare tutti i voli che partono da 'Charleneland' e arrivano a 'Mauricestad' (3)
+SELECT flights.id, flights.number, departure.city AS departure_city, arrival.city AS arrival_city
+FROM flights
+INNER JOIN airports AS departure
+ON departure.id = flights.departure_airport_id
+INNER JOIN airports AS arrival
+ON arrival.id = flights.arrival_airport_id
+WHERE departure.city = 'Charleneland'
+AND arrival.city = 'Mauricestad';
+
+-- 4- Selezionare tutti i voli con i relativi passeggeri (65296)
+SELECT flights.id, flights.number, passengers.id, passengers.name, passengers.lastname
+FROM flights
+INNER JOIN flight_passenger
+ON flight_passenger.flight_id = flights.id
+INNER JOIN passengers
+ON passengers.id = flight_passenger.passenger_id;
+
+-- 3- Selezionare tutti i passeggeri che hanno usato come documento 'Passport'(775)
+SELECT DISTINCT passengers.id, passengers.name, passengers.lastname
+FROM passengers
+INNER JOIN document_type_passenger
+ON document_type_passenger.passenger_id = passengers.id
+INNER JOIN document_types
+ON document_types.id = document_type_passenger.document_type_id
+WHERE document_types.name = 'Passport';
+
+-- 2- Selezionare i voli presi da 'Shirley Stokes' (61)
+SELECT flights.id, flights.number
+FROM flights
+INNER JOIN flight_passenger
+ON flight_passenger.flight_id = flights.id
+INNER JOIN passengers
+ON passengers.id = flight_passenger.passenger_id
+WHERE passengers.name = 'Shirley'
+AND passengers.lastname = 'Stokes';
+
+-- 1- Selezionare tutti i passeggeri del volo 70021493-2 (85)
+SELECT passengers.id, passengers.name, passengers.lastname
+FROM flights
+INNER JOIN flight_passenger
+ON flight_passenger.flight_id = flights.id
+INNER JOIN passengers
+ON passengers.id = flight_passenger.passenger_id
+WHERE flights.number = '70021493-2';
+
+-- ++++++ QUERY CON JOIN ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+-- ++++++ QUERY CON GROUP BY ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 -- ****** BONUS **********************
 
