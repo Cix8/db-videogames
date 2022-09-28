@@ -2,7 +2,44 @@
 
 -- ****** BONUS **********
 
+-- 13- Selezionare le categorie dei videogame i quali hanno una media recensioni inferiore a 1.5 (10)
+SELECT DISTINCT categories.id, categories.name
+FROM reviews
+INNER JOIN videogames
+ON videogames.id = reviews.videogame_id
+INNER JOIN category_videogame
+ON category_videogame.videogame_id = videogames.id
+INNER JOIN categories
+ON categories.id = category_videogame.category_id
+GROUP BY videogames.id, categories.id, categories.name
+HAVING AVG(reviews.rating) < 1.5;
+
+-- 12- Selezionare la software house che ha vinto più premi tra il 2015 e il 2016 (software house id : 1)
+SELECT TOP 1 COUNT(award_videogame.id) AS award_counter, software_houses.id AS software_house_id, software_houses.name AS software_house_name
+FROM award_videogame
+INNER JOIN videogames
+ON videogames.id = award_videogame.videogame_id
+INNER JOIN software_houses
+ON software_houses.id = videogames.software_house_id
+WHERE award_videogame.year >= 2015
+AND award_videogame.year <= 2016
+GROUP BY software_houses.id, software_houses.name
+ORDER BY award_counter DESC;
+
+-- 11- Selezionare i dati del videogame (id, name, release_date, totale recensioni) con più recensioni (videogame id : 398)
+SELECT TOP 1 COUNT(reviews.id) AS reviews_counter, videogames.id
+FROM reviews
+INNER JOIN videogames
+ON videogames.id = reviews.videogame_id
+GROUP BY videogames.id
+ORDER BY reviews_counter DESC;
+
 -- 10- Selezionare i dati della prima software house che ha rilasciato un gioco, assieme ai dati del gioco stesso (software house id : 5)
+SELECT TOP 1 software_houses.id, software_houses.name
+FROM software_houses
+INNER JOIN videogames
+ON videogames.software_house_id = software_houses.id
+ORDER BY videogames.release_date ASC;
 
 -- ****** BONUS **********
 
