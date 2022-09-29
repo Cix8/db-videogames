@@ -1,13 +1,11 @@
 ﻿-- ++++++ QUERY CON JOIN ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 -- 6- Selezionare tutti gli id dei voli che hanno almeno un passeggero il cui cognome inizia con 'L' (966)
-SELECT DISTINCT flights.id
-FROM flights
-INNER JOIN flight_passenger
-ON flight_passenger.flight_id = flights.id
+SELECT DISTINCT flight_passenger.flight_id
+FROM flight_passenger
 INNER JOIN passengers
-ON passengers.id = flight_passenger.passenger_id
-WHERE EXISTS(SELECT * FROM passengers WHERE passengers.lastname LIKE 'L%');
+ON flight_passenger.passenger_id = passengers.id
+WHERE passengers.lastname LIKE 'l%';
 
 -- 5- Selezionare tutti i voli che partono da 'Charleneland' e arrivano a 'Mauricestad' (3)
 SELECT flights.id, flights.number, departure.city AS departure_city, arrival.city AS arrival_city
